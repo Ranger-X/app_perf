@@ -1,8 +1,8 @@
-FROM ruby:2.6.5-alpine
+FROM ruby:2.7.2-alpine
 
 LABEL maintainer="Randy Girard <rgirard59@yahoo.com>"
 
-ENV APK_PACKAGES "git build-base supervisor tzdata curl-dev nodejs yarn postgresql-dev postgresql-client sqlite-dev"
+ENV APK_PACKAGES "git build-base tzdata curl-dev nodejs yarn postgresql-dev postgresql-client sqlite-dev"
 # ENV VIRTUAL_APK_PACKAGES ""
 # ENV APK_REMOVE_PACKAGES ""
 
@@ -29,6 +29,9 @@ COPY . .
 ENV DATABASE_URL postgres://app_perf:password@postgres:5432/app_perf?encoding=utf8&pool=5&timeout=5000
 
 RUN RAILS_ENV=production SECRET_KEY_BASE=foo bundle exec rake assets:precompile
+
+# cleanup image
+RUN apk del --no-cache build-base
 
 # Available (and reused) args
 # Use --build-arg PORT=5000 to use another app default port
