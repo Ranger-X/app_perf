@@ -2,7 +2,7 @@ FROM ruby:2.7.2-alpine
 
 LABEL maintainer="Randy Girard <rgirard59@yahoo.com>"
 
-ENV APK_PACKAGES "git build-base tzdata curl-dev nodejs yarn postgresql-dev postgresql-client sqlite-dev"
+ENV APK_PACKAGES "git build-base tzdata curl-dev nodejs yarn postgresql-dev postgresql-client sqlite-dev shared-mime-info"
 # ENV VIRTUAL_APK_PACKAGES ""
 # ENV APK_REMOVE_PACKAGES ""
 
