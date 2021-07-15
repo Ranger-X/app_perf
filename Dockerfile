@@ -21,7 +21,10 @@ ONBUILD ADD . $INSTALL_PATH
 
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
-RUN bundle install --jobs 20 --retry 5 --without development test --deployment --quiet && \
+RUN gem install bundler:2.2.11 && \
+    bundle config set deployment 'true' && \
+    bundle config set without 'development test' && \
+    bundle install --jobs 20 --retry 5 && \
       gem install app_perf_agent && yarn install
 
 COPY . .
