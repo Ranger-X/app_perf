@@ -22,7 +22,7 @@ ONBUILD ADD . $INSTALL_PATH
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 
-RUN whoami && gem install bundler:2.2.11
+RUN whoami && ls -la /usr/local && gem install bundler:2.2.11
 
 RUN bundle config set deployment 'true' && \
     bundle config set without 'development test' && \
